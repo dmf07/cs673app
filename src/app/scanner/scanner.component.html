@@ -1,0 +1,6 @@
+<button (click)="enableDisable()">Enable/Disable</button>
+<zxing-scanner
+  [enable]="enabled"
+  (hasDevices)="hasDevices($event)"
+  (torchCompatible)="torchCompatible($event)"
+></zxing-scanner>

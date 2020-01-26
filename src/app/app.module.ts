@@ -13,9 +13,10 @@ import {
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ScannerComponent } from './scanner/scanner.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ScannerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
