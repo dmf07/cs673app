@@ -26,7 +26,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: isDocker ? ['Chrome'] : ['ChromeCustom'],
+    browsers: isDocker ? ['ChromeCustom'] : ['Chrome'],
     singleRun: false,
     restartOnFileChange: true,
     customLaunchers: {
@@ -34,7 +34,7 @@ module.exports = function(config) {
         base: 'ChromeHeadless',
         // We must disable the Chrome sandbox when running Chrome inside Docker (Chrome's sandbox needs
         // more permissions than Docker allows by default)
-        flags: isDocker ? ['--no-sandbox'] : []
+        flags: ['--no-sandbox']
       }
     }
   });
