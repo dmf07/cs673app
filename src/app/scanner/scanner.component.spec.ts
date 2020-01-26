@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScannerComponent } from './scanner.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 describe('ScannerComponent', () => {
   let component: ScannerComponent;
@@ -8,7 +9,8 @@ describe('ScannerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScannerComponent]
+      declarations: [ScannerComponent],
+      imports: [ZXingScannerModule]
     }).compileComponents();
   }));
 
