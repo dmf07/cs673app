@@ -7,7 +7,6 @@ import { BarcodeFormat } from '@zxing/library';
   styleUrls: ['./scanner.component.scss']
 })
 export class ScannerComponent implements OnInit {
-  enabled = false;
   success: string;
   allowedFormats = [
     BarcodeFormat.QR_CODE,
@@ -25,9 +24,5 @@ export class ScannerComponent implements OnInit {
     if (name === 'scanSuccess') {
       this.success = $event;
     }
-  }
-
-  enableDisable() {
-    this.enabled = !this.enabled;
   }
 }
