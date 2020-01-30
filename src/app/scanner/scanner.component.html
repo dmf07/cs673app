@@ -1,6 +1,8 @@
 <button (click)="enableDisable()">Enable/Disable</button>
 <zxing-scanner
-  [enable]="enabled"
-  (hasDevices)="hasDevices($event)"
-  (torchCompatible)="torchCompatible($event)"
+  style="height:300%; width: 300px; margin: auto;"
+  [formats]="allowedFormats"
+  (scanSuccess)="whatHappened($event, 'scanSuccess')"
+  (torchCompatible)="whatHappened($event, 'torchCompatible')"
 ></zxing-scanner>
+{{ success }}

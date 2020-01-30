@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BarcodeFormat } from '@zxing/library';
 
 @Component({
   selector: 'app-scanner',
@@ -7,16 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScannerComponent implements OnInit {
   enabled = false;
+  success: string;
+  allowedFormats = [
+    BarcodeFormat.QR_CODE,
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.DATA_MATRIX /*, ...*/
+  ];
   constructor() {}
 
   ngOnInit() {}
 
-  hasDevices($event) {
-    // TODO
-  }
-
-  torchCompatible($event) {
-    // TODO
+  whatHappened($event, name) {
+    console.log(name);
+    console.log($event);
+    if (name === 'scanSuccess') {
+      this.success = $event;
+    }
   }
 
   enableDisable() {
