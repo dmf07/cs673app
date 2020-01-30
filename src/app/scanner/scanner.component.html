@@ -1,5 +1,7 @@
+<button (click)="enable()">Enable</button>
 <zxing-scanner
-  style="height:300%; width: 300px; margin: auto;"
+  [enable]="enabled"
+  style="width: 350px; margin: auto;"
   [formats]="allowedFormats"
   (scanSuccess)="whatHappened($event, 'scanSuccess')"
   (torchCompatible)="whatHappened($event, 'torchCompatible')"
