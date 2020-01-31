@@ -41,6 +41,9 @@ FROM nginx:1.17.8-alpine
 # copy artifact build from the 'build environment'
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# copy nginx config
+COPY /nginx /etc/nginx/conf.d
+
 # expose port 80
 EXPOSE 80
 
