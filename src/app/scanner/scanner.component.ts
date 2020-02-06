@@ -10,6 +10,7 @@ import { BarcodeLookupService } from '../data-services/barcode-lookup.service';
 export class ScannerComponent implements OnInit {
   isTorchCompatible: boolean;
   torchEnabled: boolean;
+  barcode: string;
   success: any;
   allowedFormats = [
     BarcodeFormat.QR_CODE,
@@ -22,6 +23,7 @@ export class ScannerComponent implements OnInit {
   ngOnInit() {}
 
   onScanSuccess($event) {
+    this.barcode = $event;
     this.barcodeLookupService
       .barcodeQuery($event)
       .subscribe(x => (this.success = x));
