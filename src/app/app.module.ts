@@ -14,6 +14,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScannerComponent } from './scanner/scanner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, ScannerComponent],
@@ -25,6 +26,7 @@ import { ScannerComponent } from './scanner/scanner.component';
     MatCardModule,
     MatButtonModule,
     ZXingScannerModule,
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     })

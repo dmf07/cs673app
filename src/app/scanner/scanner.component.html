@@ -1,9 +1,11 @@
-<button (click)="enable()">Enable</button>
+<button *ngIf="isTorchCompatible" (click)="toggleLight()">Toggle Light</button>
 <zxing-scanner
-  [enable]="enabled"
+  [enable]="true"
   style="width: 350px; margin: auto;"
   [formats]="allowedFormats"
-  (scanSuccess)="whatHappened($event, 'scanSuccess')"
-  (torchCompatible)="whatHappened($event, 'torchCompatible')"
+  (scanSuccess)="onScanSuccess($event)"
+  (torchCompatible)="onTorchCompatible($event)"
+  [torch]="torchEnabled"
+  [autofocusEnabled]="true"
 ></zxing-scanner>
-{{ success }}
+{{ success | json }}

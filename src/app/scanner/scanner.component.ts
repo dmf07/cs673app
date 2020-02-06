@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeFormat } from '@zxing/library';
+import { BarcodeLookupService } from '../data-services/barcode-lookup.service';
 
 @Component({
   selector: 'app-scanner',
@@ -7,27 +8,29 @@ import { BarcodeFormat } from '@zxing/library';
   styleUrls: ['./scanner.component.scss']
 })
 export class ScannerComponent implements OnInit {
-  enabled: boolean;
-  success: string;
+  isTorchCompatible: boolean;
+  torchEnabled: boolean;
+  success: any;
   allowedFormats = [
     BarcodeFormat.QR_CODE,
     BarcodeFormat.EAN_13,
     BarcodeFormat.CODE_128,
     BarcodeFormat.DATA_MATRIX /*, ...*/
   ];
-  constructor() {}
+  constructor(private barcodeLookupService: BarcodeLookupService) {}
 
   ngOnInit() {}
 
-  whatHappened($event, name) {
-    console.log(name);
-    console.log($event);
-    if (name === 'scanSuccess') {
-      this.success = $event;
-    }
+  onScanSuccess($event) {
+    this.barcodeLookupService
+      .barcodeQuery($event)
+      .subscribe(x => (this.success = x));
   }
 
-  enable() {
-    this.enabled = true;
+  onTorchCompatible($event) {
+    this.isTorchCompatible = $event;
+  }
+  toggleLight() {
+    this.torchEnabled = !this.torchEnabled;
   }
 }
