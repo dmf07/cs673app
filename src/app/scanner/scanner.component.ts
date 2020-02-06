@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeFormat } from '@zxing/library';
-import { BarcodeLookupService } from '../data-services/barcode-lookup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scanner',
@@ -18,15 +18,12 @@ export class ScannerComponent implements OnInit {
     BarcodeFormat.CODE_128,
     BarcodeFormat.DATA_MATRIX /*, ...*/
   ];
-  constructor(private barcodeLookupService: BarcodeLookupService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
   onScanSuccess($event) {
-    this.barcode = $event;
-    this.barcodeLookupService
-      .barcodeQuery($event)
-      .subscribe(x => (this.success = x));
+    this.router.navigate(['/result', $event]);
   }
 
   onTorchCompatible($event) {

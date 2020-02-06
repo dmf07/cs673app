@@ -15,9 +15,10 @@ import { environment } from '../environments/environment';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScannerComponent } from './scanner/scanner.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ScanResultComponent } from './scan-result/scan-result.component';
 
 @NgModule({
-  declarations: [AppComponent, ScannerComponent],
+  declarations: [AppComponent, ScannerComponent, ScanResultComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

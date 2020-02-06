@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BarcodeLookupService {
-  private uri = 'https://api.barcodelookup.com/';
+  private uri = 'https://cors-anywhere.herokuapp.com/https://api.barcodelookup.com/';
   private apiKey = 'n0nded8ftepd72ka5uwq7fnoilzaks';
 
   constructor(private httpClient: HttpClient) {}

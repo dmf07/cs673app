@@ -1,16 +1,20 @@
-<button *ngIf="isTorchCompatible" (click)="toggleLight()">Toggle Light</button>
-<zxing-scanner
-  [enable]="true"
-  style="width: 350px; margin: auto;"
-  [formats]="allowedFormats"
-  (scanSuccess)="onScanSuccess($event)"
-  (torchCompatible)="onTorchCompatible($event)"
-  [torch]="torchEnabled"
-  [autofocusEnabled]="true"
-></zxing-scanner>
-<div>
-  {{ barcode }}
+<div class="scanner">
+  <zxing-scanner
+    [enable]="true"
+    [formats]="allowedFormats"
+    (scanSuccess)="onScanSuccess($event)"
+    (torchCompatible)="onTorchCompatible($event)"
+    [torch]="torchEnabled"
+    [autofocusEnabled]="true"
+  ></zxing-scanner>
 </div>
-<div>
-  {{ success | json }}
+<div class="button">
+  <button
+    *ngIf="isTorchCompatible"
+    (click)="toggleLight()"
+    mat-stroked-button
+    color="accent"
+  >
+    Toggle Light
+  </button>
 </div>
