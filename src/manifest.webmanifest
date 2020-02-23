@@ -1,8 +1,8 @@
 {
-  "name": "app",
-  "short_name": "app",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "FindCheaper",
+  "short_name": "FindCheaper",
+  "theme_color": "#85bb65",
+  "background_color": "#ffd700",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
@@ -47,5 +47,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "splash_pages": null
 }
