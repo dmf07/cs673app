@@ -16,9 +16,19 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScannerComponent } from './scanner/scanner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ScanResultComponent } from './scan-result/scan-result.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SearchComponent } from './pages/search/search.component';
+import { HistoryComponent } from './pages/history/history.component';
 
 @NgModule({
-  declarations: [AppComponent, ScannerComponent, ScanResultComponent],
+  declarations: [
+    AppComponent,
+    ScannerComponent,
+    ScanResultComponent,
+    HomeComponent,
+    SearchComponent,
+    HistoryComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
