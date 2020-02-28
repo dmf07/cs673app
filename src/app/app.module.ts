@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatToolbarModule,
   MatCardModule,
-  MatButtonModule
+  MatButtonModule,
+  MatInputModule
 } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -36,6 +37,7 @@ import { HistoryComponent } from './pages/history/history.component';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
+    MatInputModule,
     ZXingScannerModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
