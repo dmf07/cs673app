@@ -10,10 +10,10 @@
 </div>
 <div class="button">
   <button
+    mat-stroked-button
+    color="primary"
     *ngIf="isTorchCompatible"
     (click)="toggleLight()"
-    mat-stroked-button
-    color="accent"
   >
     Toggle Light
   </button>
