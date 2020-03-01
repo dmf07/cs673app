@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BarcodeLookupService } from '../../data-services/barcode-lookup.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-result',
@@ -15,7 +17,8 @@ export class ResultComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private barcodeLookupService: BarcodeLookupService
+    private barcodeLookupService: BarcodeLookupService,
+    private ngxSpinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -31,13 +34,17 @@ export class ResultComponent implements OnInit {
     if (this.useSampleData) {
       this.barcode = '0012345678905';
     }
-    this.barcodeLookupService.barcodeQuery(this.barcode).subscribe(
-      x => (this.result = x),
-      error => {
-        if (error.status === 404) {
-          this.notFound = true;
+    this.ngxSpinnerService.show();
+    this.barcodeLookupService
+      .barcodeQuery(this.barcode)
+      .pipe(finalize(() => this.ngxSpinnerService.hide()))
+      .subscribe(
+        x => (this.result = x),
+        error => {
+          if (error.status === 404) {
+            this.notFound = true;
+          }
         }
-      }
-    );
+      );
   }
 }

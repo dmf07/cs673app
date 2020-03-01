@@ -16,6 +16,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScannerComponent } from './scanner/scanner.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './pages/result/result.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -41,6 +42,7 @@ import { HistoryComponent } from './pages/history/history.component';
     MatButtonModule,
     MatInputModule,
     ZXingScannerModule,
+    NgxSpinnerModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production

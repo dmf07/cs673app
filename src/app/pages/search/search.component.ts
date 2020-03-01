@@ -11,6 +11,9 @@ export class SearchComponent {
 
   upcCode = '';
   minUpcLength = 4;
+  hasDevices: boolean;
+  hasPermission: boolean;
+  scannerEnabled: boolean;
 
   onEnter() {
     if (this.upcCode.length >= this.minUpcLength) {
@@ -20,5 +23,19 @@ export class SearchComponent {
 
   search() {
     this.router.navigate(['result', this.upcCode]);
+  }
+
+  onHasDevices($event) {
+    console.log($event);
+    this.hasDevices = $event;
+  }
+
+  onHasPermission($event) {
+    console.log($event);
+    this.hasPermission = $event;
+  }
+
+  enableScanner() {
+    this.scannerEnabled = true;
   }
 }
