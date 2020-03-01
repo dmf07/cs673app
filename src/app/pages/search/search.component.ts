@@ -10,6 +10,13 @@ export class SearchComponent {
   constructor(private router: Router) {}
 
   upcCode = '';
+  minUpcLength = 4;
+
+  onEnter() {
+    if (this.upcCode.length >= this.minUpcLength) {
+      this.search();
+    }
+  }
 
   search() {
     this.router.navigate(['result', this.upcCode]);
