@@ -5,12 +5,17 @@
   <div class="row justify-content-center">
     <mat-form-field class="full-width">
       <mat-label>Search UPC code</mat-label>
-      <input matInput placeholder="Ex. 012345678905" [(ngModel)]="upcCode" />
+      <input
+        matInput
+        placeholder="Ex. 0012345678905"
+        [(ngModel)]="upcCode"
+        (keyup.enter)="onEnter()"
+      />
     </mat-form-field>
     <button
       mat-stroked-button
       color="primary"
-      [disabled]="upcCode.length < 4"
+      [disabled]="upcCode.length < minUpcLength"
       (click)="search()"
     >
       Search
