@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,7 @@ import { environment } from '../environments/environment';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScannerComponent } from './scanner/scanner.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ScanResultComponent } from './scan-result/scan-result.component';
+import { ResultComponent } from './pages/result/result.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { HistoryComponent } from './pages/history/history.component';
@@ -25,7 +26,7 @@ import { HistoryComponent } from './pages/history/history.component';
   declarations: [
     AppComponent,
     ScannerComponent,
-    ScanResultComponent,
+    ResultComponent,
     HomeComponent,
     SearchComponent,
     HistoryComponent
@@ -34,6 +35,7 @@ import { HistoryComponent } from './pages/history/history.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
