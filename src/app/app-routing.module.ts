@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ScanResultComponent } from './scan-result/scan-result.component';
+import { ResultComponent } from './pages/result/result.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ScannerComponent } from './scanner/scanner.component';
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'result/:barcode',
-    component: ScanResultComponent
+    component: ResultComponent
   }
 ];
 

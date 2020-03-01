@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BarcodeFormat } from '@zxing/library';
 import { Router } from '@angular/router';
 
@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss']
 })
-export class ScannerComponent implements OnInit {
+export class ScannerComponent {
   isTorchCompatible: boolean;
   torchEnabled: boolean;
   barcode: string;
   success: any;
+  hasDevices: boolean;
+  hasPermission: boolean;
   allowedFormats = [
     BarcodeFormat.QR_CODE,
     BarcodeFormat.EAN_13,
@@ -20,14 +22,20 @@ export class ScannerComponent implements OnInit {
   ];
   constructor(private router: Router) {}
 
-  ngOnInit() {}
-
   onScanSuccess($event) {
     this.router.navigate(['/result', $event]);
   }
 
   onTorchCompatible($event) {
     this.isTorchCompatible = $event;
+  }
+
+  onHasDevices($event) {
+    this.hasDevices = $event;
+  }
+
+  onPermissionResponse($event) {
+    this.hasPermission = $event;
   }
   toggleLight() {
     this.torchEnabled = !this.torchEnabled;

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SearchComponent } from './search.component';
 import { ScannerComponent } from 'src/app/scanner/scanner.component';
+import { FormsModule } from '@angular/forms';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -18,6 +19,7 @@ describe('SearchComponent', () => {
         MatInputModule,
         ZXingScannerModule,
         RouterTestingModule,
+        FormsModule,
         BrowserAnimationsModule
       ]
     }).compileComponents();

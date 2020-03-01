@@ -3,16 +3,16 @@ import { MatCardModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { ScanResultComponent } from './scan-result.component';
+import { ResultComponent } from './result.component';
 
-describe('ScanResultComponent', () => {
-  let component: ScanResultComponent;
-  let fixture: ComponentFixture<ScanResultComponent>;
+describe('ResultComponent', () => {
+  let component: ResultComponent;
+  let fixture: ComponentFixture<ResultComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MatCardModule, HttpClientTestingModule],
-      declarations: [ScanResultComponent],
+      declarations: [ResultComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -28,7 +28,7 @@ describe('ScanResultComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScanResultComponent);
+    fixture = TestBed.createComponent(ResultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
