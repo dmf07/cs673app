@@ -1,10 +1,13 @@
 <div class="scanner">
-  <div *ngIf="hasDevices && hasPermission" class="row justify-content-center">
+  <div
+    *ngIf="hasDevices && hasPermission && enabled"
+    class="row justify-content-center"
+  >
     <h2>Scan UPC Code</h2>
   </div>
   <div class="row justify-content-center">
     <zxing-scanner
-      [enable]="true"
+      [enable]="enabled"
       [formats]="allowedFormats"
       (scanSuccess)="onScanSuccess($event)"
       (torchCompatible)="onTorchCompatible($event)"
@@ -16,15 +19,12 @@
   </div>
   <div
     class="row justify-content-center"
-    *ngIf="hasDevices && hasPermission && isTorchCompatible"
+    *ngIf="hasDevices && hasPermission && isTorchCompatible && enabled"
   >
     <div class="button">
       <button mat-stroked-button color="primary" (click)="toggleLight()">
         Toggle Light
       </button>
     </div>
-  </div>
-  <div *ngIf="hasDevices && hasPermission" class="row justify-content-center">
-    <h3>or</h3>
   </div>
 </div>

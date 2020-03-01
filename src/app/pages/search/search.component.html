@@ -1,6 +1,16 @@
 <div class="container">
   <div class="row justify-content-center">
-    <app-scanner></app-scanner>
+    <app-scanner
+      (scannerHasDevices)="onHasDevices($event)"
+      (scannerHasPermission)="onHasPermission($event)"
+      [enabled]="scannerEnabled"
+    ></app-scanner>
+  </div>
+  <div
+    *ngIf="hasDevices && hasPermission && scannerEnabled"
+    class="row justify-content-center"
+  >
+    <h3>or</h3>
   </div>
   <div class="row justify-content-center">
     <mat-form-field class="full-width">
@@ -13,12 +23,21 @@
       />
     </mat-form-field>
     <button
+      class="search-button"
       mat-stroked-button
       color="primary"
       [disabled]="upcCode.length < minUpcLength"
       (click)="search()"
     >
       Search
+    </button>
+  </div>
+  <div
+    *ngIf="hasDevices && hasPermission && !scannerEnabled"
+    class="row justify-content-center scan-row"
+  >
+    <button mat-stroked-button color="primary" (click)="enableScanner()">
+      Use camera to scan UPC code
     </button>
   </div>
 </div>
