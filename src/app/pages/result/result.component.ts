@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BarcodeLookupService } from '../../services/barcode-lookup.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
+import { HistoryService } from 'src/app/services/history.service';
+import { HistoryItem } from 'src/app/models/history-item.model';
 
 @Component({
   selector: 'app-result',
@@ -18,7 +20,8 @@ export class ResultComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private barcodeLookupService: BarcodeLookupService,
-    private ngxSpinnerService: NgxSpinnerService
+    private ngxSpinnerService: NgxSpinnerService,
+    private historyService: HistoryService
   ) {}
 
   ngOnInit() {
@@ -37,7 +40,12 @@ export class ResultComponent implements OnInit {
     this.ngxSpinnerService.show();
     this.barcodeLookupService
       .barcodeQuery(this.barcode)
-      .pipe(finalize(() => this.ngxSpinnerService.hide()))
+      .pipe(
+        finalize(() => {
+          this.saveHistory();
+          this.ngxSpinnerService.hide();
+        })
+      )
       .subscribe(
         x => (this.result = x),
         error => {
@@ -46,5 +54,15 @@ export class ResultComponent implements OnInit {
           }
         }
       );
+  }
+
+  private saveHistory() {
+    const historyItem = new HistoryItem();
+    historyItem.upc = this.barcode;
+    historyItem.title = this.barcode;
+    if (!this.notFound) {
+      historyItem.title = this.result.title;
+    }
+    this.historyService.saveHistoryItem(historyItem);
   }
 }
