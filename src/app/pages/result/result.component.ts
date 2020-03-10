@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BarcodeLookupService } from '../../data-services/barcode-lookup.service';
+import { BarcodeLookupService } from '../../services/barcode-lookup.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
 
