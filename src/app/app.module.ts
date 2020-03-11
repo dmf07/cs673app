@@ -10,7 +10,9 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatButtonModule,
-  MatInputModule
+  MatInputModule,
+  MatListModule,
+  MatIconModule
 } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -41,6 +43,8 @@ import { HistoryComponent } from './pages/history/history.component';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatListModule,
+    MatIconModule,
     ZXingScannerModule,
     NgxSpinnerModule,
     HttpClientModule,
