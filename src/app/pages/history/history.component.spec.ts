@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistoryComponent } from './history.component';
+import { HistoryService } from 'src/app/services/history.service';
+import { RouterModule } from '@angular/router';
+import { MatIconModule, MatListModule } from '@angular/material';
 
 describe('HistoryComponent', () => {
   let component: HistoryComponent;
@@ -8,9 +11,10 @@ describe('HistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HistoryComponent ]
-    })
-    .compileComponents();
+      declarations: [HistoryComponent],
+      providers: [HistoryService],
+      imports: [RouterModule, MatIconModule, MatListModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

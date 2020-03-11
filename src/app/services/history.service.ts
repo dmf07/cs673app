@@ -9,16 +9,22 @@ export class HistoryService {
   constructor() {}
 
   saveHistoryItem(historyItem: HistoryItem) {
-    const historyItemsString = localStorage.getItem(this.HISTORY_ITEMS);
-    const historyItems = !!historyItemsString
-      ? (JSON.parse(historyItemsString) as HistoryItem[])
-      : ([] as HistoryItem[]);
-
-    const upcIndex = historyItems.findIndex(x => x.upc === historyItem.upc);
-    if (upcIndex !== -1) {
-      historyItems.splice(upcIndex, 1);
-    }
+    const historyItems = this.getHistoryItems();
     historyItems.push(historyItem);
     localStorage.setItem(this.HISTORY_ITEMS, JSON.stringify(historyItems));
+  }
+
+  getHistoryItems() {
+    const historyItemsString = localStorage.getItem(this.HISTORY_ITEMS);
+    const historyItems = !!historyItemsString
+      ? JSON.parse(historyItemsString).map(x => {
+          return {
+            upc: x.upc,
+            title: x.title,
+            date: new Date(x.date)
+          };
+        })
+      : ([] as HistoryItem[]);
+    return historyItems.sort((a, b) => b.date - a.date);
   }
 }
