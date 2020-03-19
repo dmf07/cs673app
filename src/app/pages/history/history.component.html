@@ -24,4 +24,11 @@
       </mat-nav-list>
     </div>
   </ng-container>
+  <div
+    class="row justify-content-center"
+    *ngIf="historyItemsGrouped.length === 0"
+  >
+    <br />
+    <h3>No History</h3>
+  </div>
 </div>
