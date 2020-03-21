@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseApi: 'https://cs673-api.azurewebsites.net/'
 };

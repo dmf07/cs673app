@@ -1,31 +1,32 @@
 <div class="container">
   <div class="row justify-content-center">
-    <h2 class="barcode">{{ barcode }}</h2>
+    <h2>{{ barcode }}</h2>
   </div>
-  <div class="row justify-content-center">
-    <ng-container *ngIf="result">
-      <mat-card class="card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{ result.title }}</mat-card-title>
-          <mat-card-subtitle>{{ result.description }}</mat-card-subtitle>
-        </mat-card-header>
 
-        <mat-card-content>
-          <img
-            class="image"
-            *ngIf="result.imageUrl"
-            mat-card-image
-            [attr.src]="result.imageUrl"
-          />
-          <ul *ngFor="let store of result.stores">
-            <li>{{ store.name }} ${{ store.price }}</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </ng-container>
-    <ng-container *ngIf="notFound">
+  <ng-container *ngIf="item">
+    <div>
+      <h2>{{ item.item_attributes?.title }}</h2>
+    </div>
+    <div class="row justify-content-center">
+      <img
+        *ngIf="item.item_attributes?.image"
+        [attr.src]="item.item_attributes?.image"
+      />
+    </div>
+
+    <div>
+      <p>{{ item.item_attributes?.description }}</p>
+    </div>
+
+    <div>
+      <ul *ngFor="let store of item.Stores">
+        <li>{{ store.store_name }} ${{ store.price }}</li>
+      </ul>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="notFound">
+    <div class="row justify-content-center">
       <h1>Not Found</h1>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 </div>

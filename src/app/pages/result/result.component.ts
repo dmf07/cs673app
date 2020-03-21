@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
 import { HistoryService } from 'src/app/services/history.service';
 import { HistoryItem } from 'src/app/models/history-item.model';
+import { Item } from 'src/app/models/barcode_spider/item.model';
 
 @Component({
   selector: 'app-result',
@@ -13,9 +14,8 @@ import { HistoryItem } from 'src/app/models/history-item.model';
 })
 export class ResultComponent implements OnInit {
   barcode: string;
-  result: any;
+  item: Item;
   notFound: boolean;
-  private useSampleData: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,16 +26,12 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
     this.barcode = this.activatedRoute.snapshot.params.barcode;
-    this.useSampleData = !!this.activatedRoute.snapshot.queryParams.sample;
     this.lookupBarcode();
   }
 
   lookupBarcode() {
     if (!this.barcode) {
       return;
-    }
-    if (this.useSampleData) {
-      this.barcode = '0012345678905';
     }
     this.ngxSpinnerService.show();
     this.barcodeLookupService
@@ -47,7 +43,7 @@ export class ResultComponent implements OnInit {
         })
       )
       .subscribe(
-        x => (this.result = x),
+        item => this.handleResult(item),
         error => {
           if (error.status === 404) {
             this.notFound = true;
@@ -56,12 +52,21 @@ export class ResultComponent implements OnInit {
       );
   }
 
+  private handleResult(item: Item) {
+    console.log(item);
+    if (item.item_response.code === 400) {
+      this.notFound = true;
+    } else {
+      this.item = item;
+    }
+  }
+
   private saveHistory() {
     const historyItem = new HistoryItem();
     historyItem.upc = this.barcode;
     historyItem.title = this.barcode;
     if (!this.notFound) {
-      historyItem.title = this.result.title;
+      historyItem.title = this.item.item_attributes.title;
     }
     this.historyService.saveHistoryItem(historyItem);
   }
