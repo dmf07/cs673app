@@ -28,12 +28,8 @@ COPY . /app
 RUN ng test --watch=false
 RUN ng e2e --port 4202
 
-# generate build
-RUN ng build --output-path=dist
-
-############
-### prod ###
-############
+# generate production build
+RUN ng build --output-path=dist --configuration=production
 
 # base image
 FROM nginx:1.17.8-alpine
