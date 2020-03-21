@@ -53,11 +53,10 @@ export class ResultComponent implements OnInit {
   }
 
   private handleResult(item: Item) {
-    console.log(item);
-    if (item.item_response.code === 400) {
-      this.notFound = true;
-    } else {
+    if (item.item_response.code === 200) {
       this.item = item;
+    } else {
+      this.notFound = true;
     }
   }
 
