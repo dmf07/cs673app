@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseApi: 'https://cs673-api.azurewebsites.net/'
+  baseApi: 'http://localhost/'
 };
 
 /*
