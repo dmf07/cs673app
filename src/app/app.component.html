@@ -1,6 +1,23 @@
 <mat-toolbar color="primary" class="app-toolbar">
   <mat-toolbar-row>
-    <span [routerLink]="['/']" class="title">Find Cheaper</span>
+    <div>
+      <span [routerLink]="['/']" class="title">Find Cheaper</span>
+    </div>
+    <div class="flex-spacer"></div>
+    <div>
+      <span *ngIf="socialUser" class="welcome">
+        <img *ngIf="socialUser.photoUrl" [attr.src]="socialUser.photoUrl"
+      /></span>
+      <span *ngIf="showLogin" class="login" (click)="signInWithGoogle()">
+        Login with <app-google-svg></app-google-svg>
+      </span>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <div class="flex-spacer"></div>
+    <div>
+      <span *ngIf="socialUser" class="login" (click)="signOut()">Logout</span>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <main>
