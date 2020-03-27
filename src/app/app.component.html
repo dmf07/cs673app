@@ -9,7 +9,7 @@
         <img *ngIf="socialUser.photoUrl" [attr.src]="socialUser.photoUrl"
       /></span>
       <span *ngIf="showLogin" class="login" (click)="signInWithGoogle()">
-        Login with <app-google-svg></app-google-svg>
+        <img src="../assets/images/google32x32.png" /> Login
       </span>
     </div>
   </mat-toolbar-row>
