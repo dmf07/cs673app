@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthService } from 'angularx-social-login';
-import { GoogleSvgComponent } from './google-svg/google-svg.component';
 
 const mockAuthService = {} as AuthService;
 
@@ -18,7 +17,7 @@ describe('AppComponent', () => {
           useValue: mockAuthService
         }
       ],
-      declarations: [AppComponent, GoogleSvgComponent]
+      declarations: [AppComponent]
     }).compileComponents();
   }));
 

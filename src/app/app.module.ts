@@ -26,7 +26,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { socialLoginConfig } from './services/social-login-config';
-import { GoogleSvgComponent } from './google-svg/google-svg.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { GoogleSvgComponent } from './google-svg/google-svg.component';
     ResultComponent,
     HomeComponent,
     SearchComponent,
-    HistoryComponent,
-    GoogleSvgComponent
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
