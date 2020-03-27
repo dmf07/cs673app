@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 
 import {
   MatToolbarModule,
@@ -24,6 +25,8 @@ import { ResultComponent } from './pages/result/result.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { HistoryComponent } from './pages/history/history.component';
+import { socialLoginConfig } from './services/social-login-config';
+import { GoogleSvgComponent } from './google-svg/google-svg.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { HistoryComponent } from './pages/history/history.component';
     ResultComponent,
     HomeComponent,
     SearchComponent,
-    HistoryComponent
+    HistoryComponent,
+    GoogleSvgComponent
   ],
   imports: [
     BrowserModule,
@@ -48,11 +52,17 @@ import { HistoryComponent } from './pages/history/history.component';
     ZXingScannerModule,
     NgxSpinnerModule,
     HttpClientModule,
+    SocialLoginModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: socialLoginConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
