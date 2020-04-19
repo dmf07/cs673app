@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
 
 import { ResultComponent } from './result.component';
+import { AuthService } from 'angularx-social-login';
 
 describe('ResultComponent', () => {
   let component: ResultComponent;
@@ -18,11 +19,15 @@ describe('ResultComponent', () => {
           useValue: {
             snapshot: {
               params: {},
-              queryParams: {}
-            }
-          }
-        }
-      ]
+              queryParams: {},
+            },
+          },
+        },
+        {
+          provide: AuthService,
+          useValue: {},
+        },
+      ],
     }).compileComponents();
   }));
 
