@@ -3,6 +3,8 @@ import { HistoryItemGrouped } from 'src/app/models/history-item-grouped.model';
 import { HistoryItemService } from 'src/app/services/history-item.service';
 import { AuthService, SocialUser } from 'angularx-social-login';
 import { Subscription } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-history',
@@ -16,7 +18,8 @@ export class HistoryComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   constructor(
     private historyItemService: HistoryItemService,
-    private authService: AuthService
+    private authService: AuthService,
+    private ngxSpinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -33,20 +36,24 @@ export class HistoryComponent implements OnInit, OnDestroy {
   }
 
   private getHistory(idToken: string) {
-    this.historyItemService.getHistory(idToken).subscribe((historyItems) => {
-      this.historyItemsGrouped = historyItems.reduce((acc, d) => {
-        const dateString = new Date(d.date).toDateString();
-        const group = acc.find((x) => x.date.toDateString() === dateString);
-        if (group) {
-          group.historyItems.push(d);
-        } else {
-          acc.push({
-            date: new Date(dateString),
-            historyItems: [d],
-          });
-        }
-        return acc;
-      }, []);
-    });
+    this.ngxSpinnerService.show();
+    this.historyItemService
+      .getHistory(idToken)
+      .pipe(finalize(() => this.ngxSpinnerService.hide()))
+      .subscribe((historyItems) => {
+        this.historyItemsGrouped = historyItems.reduce((acc, d) => {
+          const dateString = new Date(d.date).toDateString();
+          const group = acc.find((x) => x.date.toDateString() === dateString);
+          if (group) {
+            group.historyItems.push(d);
+          } else {
+            acc.push({
+              date: new Date(dateString),
+              historyItems: [d],
+            });
+          }
+          return acc;
+        }, []);
+      });
   }
 }
