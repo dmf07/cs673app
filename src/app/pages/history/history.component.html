@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="socialUser">
   <ng-container *ngFor="let historyItemGrouped of historyItemsGrouped">
     <div class="row justify-content-center">
       <h2>{{ historyItemGrouped.date | date }}</h2>
@@ -30,5 +30,11 @@
   >
     <br />
     <h3>No History</h3>
+  </div>
+</div>
+<div class="container" *ngIf="!socialUser">
+  <div class="row justify-content-center">
+    <br />
+    <h3>Login for History</h3>
   </div>
 </div>

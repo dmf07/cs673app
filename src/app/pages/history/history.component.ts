@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class HistoryComponent implements OnInit, OnDestroy {
   historyItemsGrouped: HistoryItemGrouped[] = [];
   loggedIn = false;
+  socialUser: SocialUser;
   private subscription: Subscription;
   constructor(
     private historyItemService: HistoryItemService,
@@ -20,6 +21,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.authService.authState.subscribe((socialUser) => {
+      this.socialUser = socialUser;
       if (socialUser) {
         this.getHistory(socialUser.idToken);
       }
