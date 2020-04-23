@@ -25,6 +25,13 @@ export class HistoryItemService {
     );
   }
 
+  public deleteHistoryItem(idToken: string, id: string) {
+    return this.httpClient.delete(
+      `${environment.historyApi}history/${id}`,
+      { headers: this.buildHeaders(idToken) }
+    );
+  }
+
   private buildHeaders(idToken: string) {
     return new HttpHeaders({
       'Content-Type': 'application/json',

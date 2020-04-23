@@ -16,8 +16,12 @@
             {{ historyItem.title }}
           </div>
           <div class="col-2">
-            <button mat-icon-button>
-              <mat-icon>info</mat-icon>
+            <button
+              mat-icon-button
+              class="delete"
+              (click)="deleteHistoryItem($event, historyItem.id)"
+            >
+              <mat-icon fontSet="fas" fontIcon="fa-trash-alt"></mat-icon>
             </button>
           </div>
         </mat-list-item>

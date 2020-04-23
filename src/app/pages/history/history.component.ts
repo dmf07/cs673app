@@ -35,6 +35,20 @@ export class HistoryComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  deleteHistoryItem($event, id: string) {
+    $event.stopPropagation();
+    if (confirm(`Do you want to delete this item`)) {
+      this.ngxSpinnerService.show();
+      this.historyItemService
+        .deleteHistoryItem(this.socialUser.idToken, id)
+        .pipe(finalize(() => this.ngxSpinnerService.hide()))
+        .subscribe(
+          () => this.getHistory(this.socialUser.idToken),
+          () => this.getHistory(this.socialUser.idToken)
+        );
+    }
+  }
+
   private getHistory(idToken: string) {
     this.ngxSpinnerService.show();
     this.historyItemService
