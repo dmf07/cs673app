@@ -19,9 +19,30 @@
     </div>
 
     <div>
-      <ul *ngFor="let store of item.Stores">
-        <li>{{ store.store_name }} ${{ store.price }}</li>
-      </ul>
+      <mat-card>
+        <mat-card-title>Details</mat-card-title>
+        <mat-card-content>
+          <div *ngIf="item.item_attributes?.manufacturer">
+            Manufacturer: {{ item.item_attributes?.manufacturer }}
+          </div>
+          <div *ngIf="item.item_attributes?.brand">
+            Brand: {{ item.item_attributes?.brand }}
+          </div>
+          <div *ngIf="item.item_attributes?.parent_category">
+            Parent Category: {{ item.item_attributes?.parent_category }}
+          </div>
+          <div *ngIf="item.item_attributes?.category">
+            Category: {{ item.item_attributes?.category }}
+          </div>
+
+          <div>
+            Prices:
+            <ul *ngFor="let store of item.Stores">
+              <li>{{ store.store_name }} ${{ store.price }}</li>
+            </ul>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
 
     <div *ngIf="recommendations.length > 0">
