@@ -8,6 +8,7 @@ import { Item } from 'src/app/models/barcode_spider/item.model';
 import { HistoryItemService } from 'src/app/services/history-item.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'angularx-social-login';
+import { Recommendation } from 'src/app/models/recommendation.model';
 
 @Component({
   selector: 'app-result',
@@ -17,6 +18,7 @@ import { AuthService } from 'angularx-social-login';
 export class ResultComponent implements OnInit, OnDestroy {
   barcode: string;
   item: Item;
+  recommendations: Recommendation[] = [];
   notFound: boolean;
   private subscription: Subscription = new Subscription();
   constructor(
@@ -28,8 +30,15 @@ export class ResultComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.barcode = this.activatedRoute.snapshot.params.barcode;
-    this.lookupBarcode();
+    this.subscription.add(
+      this.activatedRoute.paramMap.subscribe((params) => {
+        this.recommendations = [];
+        this.item = null;
+        this.notFound = false;
+        this.barcode = params.get('barcode');
+        this.lookupBarcode();
+      })
+    );
   }
 
   ngOnDestroy() {
@@ -62,17 +71,20 @@ export class ResultComponent implements OnInit, OnDestroy {
   private handleResult(item: Item) {
     if (item.item_response.code === 200) {
       this.item = item;
+      this.getRecommendations();
     } else {
       this.notFound = true;
     }
   }
 
   private saveHistory() {
-    this.subscription = this.authService.authState.subscribe((socialLogin) => {
-      if (socialLogin) {
-        this.saveHistoryItem(socialLogin.idToken);
-      }
-    });
+    this.subscription.add(
+      this.authService.authState.subscribe((socialLogin) => {
+        if (socialLogin) {
+          this.saveHistoryItem(socialLogin.idToken);
+        }
+      })
+    );
   }
 
   private saveHistoryItem(idToken: string) {
@@ -83,5 +95,13 @@ export class ResultComponent implements OnInit, OnDestroy {
       historyItem.title = this.item.item_attributes.title;
     }
     this.historyItemService.saveHistory(idToken, historyItem).subscribe();
+  }
+
+  private getRecommendations() {
+    this.barcodeLookupService
+      .barcodeRecommendations(this.barcode)
+      .subscribe((x) => {
+        this.recommendations = x;
+      });
   }
 }

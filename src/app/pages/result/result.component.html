@@ -23,6 +23,21 @@
         <li>{{ store.store_name }} ${{ store.price }}</li>
       </ul>
     </div>
+
+    <div *ngIf="recommendations.length > 0">
+      <mat-card>
+        <mat-card-title>Recommendations</mat-card-title>
+        <mat-card-content>
+          <ul *ngFor="let recommendation of recommendations">
+            <li>
+              <a [routerLink]="['/result', recommendation.upc]">{{
+                recommendation.title
+              }}</a>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </ng-container>
   <ng-container *ngIf="notFound">
     <div class="row justify-content-center">
