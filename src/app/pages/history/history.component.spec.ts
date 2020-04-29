@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistoryComponent } from './history.component';
 import { RouterModule } from '@angular/router';
-import { MatIconModule, MatListModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
 import { HistoryItemService } from 'src/app/services/history-item.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from 'angularx-social-login';
@@ -20,16 +20,11 @@ describe('HistoryComponent', () => {
         {
           provide: AuthService,
           useValue: {
-            authState: of(null)
+            authState: of(null),
           },
         },
       ],
-      imports: [
-        RouterModule,
-        MatIconModule,
-        MatListModule,
-        HttpClientTestingModule,
-      ],
+      imports: [RouterModule, MatIconModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 

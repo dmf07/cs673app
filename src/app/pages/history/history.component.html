@@ -3,29 +3,27 @@
     <div class="row justify-content-center">
       <h2>{{ historyItemGrouped.date | date }}</h2>
     </div>
-    <div class="row justify-content-center">
-      <mat-nav-list>
-        <mat-list-item
-          [routerLink]="['/result/' + historyItem.upc]"
-          *ngFor="let historyItem of historyItemGrouped.historyItems"
-        >
-          <div class="col-3">
-            {{ historyItem.date | date: "hh:mm" }}
-          </div>
-          <div class="col-7">
-            {{ historyItem.title }}
-          </div>
-          <div class="col-2">
-            <button
-              mat-icon-button
-              class="delete"
-              (click)="deleteHistoryItem($event, historyItem.id)"
-            >
-              <mat-icon fontSet="fas" fontIcon="fa-trash-alt"></mat-icon>
-            </button>
-          </div>
-        </mat-list-item>
-      </mat-nav-list>
+    <div class="row">
+      <table class="table">
+        <tbody>
+          <tr
+            [routerLink]="['/result/' + historyItem.upc]"
+            *ngFor="let historyItem of historyItemGrouped.historyItems"
+          >
+            <td>{{ historyItem.date | date: "hh:mm" }}</td>
+            <td>{{ historyItem.title }}</td>
+            <td>
+              <button
+                mat-icon-button
+                class="delete"
+                (click)="deleteHistoryItem($event, historyItem.id)"
+              >
+                <mat-icon fontSet="fas" fontIcon="fa-trash-alt"></mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </ng-container>
   <div
